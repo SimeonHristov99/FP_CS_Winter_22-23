@@ -1,0 +1,146 @@
+###################################################################################################
+# Week_01 - Recursion (part 1)
+###################################################################################################
+
+[ ] Walk around the GitHub page.
+[ ] Yes, homework 3 is going to be during the Christmas holidays.
+[ ] Sadly, this time is the only time appropriate for me.
+[ ] During the intermission create a Facebook chat (FP_CS_22-23)! Remind Simo if he forgets, please 😄!
+
+
+- Racket is PREFIX, i.e. first write the procedure and then write its arguments
+- extension for Racket files: .rkt
+- Edit > Preferences > Editing > Racket > put ticks everywhere
+- Edit > Preferences > Editing > General Editing > Enable automatic parenthesis, square brackets, and quotes
+- Shortcuts
+    - `Esc + p` for using the previous input in interpreter window
+    - `Cntr + F5` for running the code in the text editor window
+    - `Enter` to run code in the interpreter with caret after last character
+    - `Cntr + Enter` to run code in the interpreter without caret after last character
+    - the two windows are independent, so feel free to test code in the interpreter window even if the code in the text editor window has errors or is incomplete
+- IMPORTANT NOTE: DrRacket DOES NOT autosave.
+
+Comments
+    Only for human-readable text.
+
+    ; This is a single-line comment
+    #|
+    This
+    is
+    a multiline comment.
+    |#
+
+The functions in Racket are (formally) called procedures
+    - What is the difference between a procedure and a method?
+        ???
+
+What is a predicate?
+    ???
+
+
+Types of Evaluation Processes
+
+   Linearly Recursive
+        1. The result is stored in a recursive tail.
+        2. The recursive call is part of an expression.
+
+   Linearly Iterative
+        1. The result is stored as a variable that is set by ANOTHER function.
+        Often the variable is named "result" and the function - "helper".
+        2. The recursive call is not part of an expression.
+        These processes are faster than the linearly recursive ones!
+
+
+What is a declaration and what is a definition?
+    int add(const int x, const int y)       <-- ???
+    {                                       <-- ???
+        return x + y;                       <-- ???
+    }                                       <-- ???
+
+
+Built-in data types
+    - boolean: #t #f
+    - numbers: 1, 1.5, 2+3i
+    - strings: "hello"
+    - Pairs: '(1 . 2)
+    - Lists: '(1 2 3 4 5)
+    - conventions for identifiers:
+        - myProgram vs. my_program vs. my-program (<- Kebab Case 😄)
+        - predicate => suffix "?"
+
+
+Procedures
+    display
+        - prints something on console
+        - (display "Hello, world!") -> Hello, world!
+    = 
+        - check equality between numbers
+        - (= 5 5) -> #t
+        - (= 5 -5) -> #f
+    (add1 x), (sub1 x): analogous to (+ x 1) and (- x 1)
+    equal?
+        - check for equality if arguments are not numbers
+        - (equal? "Hello" "He") -> #f
+        - (equal? 5 "He") -> #f
+    boolean operators: not, and, or
+        - (and #t #f) -> #f
+        - (not #t) -> #f
+    /
+        - division between numbers
+        - (/ 10 5) -> 2
+        - (/ 10.0 7.0) -> 1.4285714285714286
+    quotient
+        - returns the whole part of the division
+        - (quotient 10.0 7.0) -> 1.0
+    remainder
+        - returns the remainder of the division
+        - (remainder 123 10) -> 3
+(define (f x)
+  (cond
+    [(= x 10) "x is 10"]
+    [(zero? (remainder x 2)) "x is not 10 but is even"]
+    [else "x is not 10 and is not even"]
+    )
+  )
+
+(f 10) ; -> x is 10
+(f 5) ; -> x is not 10 and is not even
+(f 6) ; -> x is not 10 but is even
+    expt
+        - the power operator
+        - (expt 2 10) -> 1024
+    min, max, +, -, *, <, <=, ...
+        - NOTE: They work with more than two numbers also!
+        - (max 1 2 3 4 5) -> 5
+        - (<= 1 2 3 4 5) -> #t
+    (if <boolean_cond>  <= Notice the line breaks!
+        <code if true>  <= Notice the line breaks!
+        <code if false> <= Notice the line breaks!
+        )
+
+
+Key words to watch out for in an exam
+    - естествено
+    - неотрицателно
+    - неположително
+    - положително
+    - индекс
+    - ...
+
+
+Nested procedures
+    - Will more than one procedure use it?
+        - Yes => global
+        - No => nested
+
+
+The hello world procedure:
+
+#lang racket    <--- Should always be there
+
+(display "Hello, world!")
+^                       ^
+|                       |
+|                       |
+Do not forget the parenthesis (procedure <=> parenthesis) !
+
