@@ -1,4 +1,4 @@
-# Functional Programming, Computer Science, Winter Semester 2021-2022
+# Functional Programming, Computer Science, Winter Semester 2022-2023
 
 ## Algorithm for solving exercises
 
