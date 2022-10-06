@@ -25,7 +25,7 @@
 - [Working with lists and pairs](https://docs.racket-lang.org/reference/pairs.html)
 - [Some built-in procedures](https://www.cs.cmu.edu/Groups/AI/html/r4rs/r4rs_8.html)
 - [Install DrRacket](https://download.racket-lang.org/)
-- [Introduction to Racket and Dr. Racket](https://www.youtube.com/watch?v=j63O7A-ZKHk)
+- [Introduction to Racket and Dr. Racket](https://www.youtube.com/playlist?list=PLXaqTeMx01E_eK1ZEpKvKL5KwSaj7cJW9)
 
 ## Don't be afraid to ask questions
 
