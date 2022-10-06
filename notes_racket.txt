@@ -4,10 +4,20 @@
 
 [ ] Walk around the GitHub page.
 [ ] Yes, homework 3 is going to be during the Christmas holidays.
+    Here is a timeline THAT MIGHT CHANGE:
+        - homework 1: week 03 (2 programming tasks)
+        - homework 2: week 06 (2 programming tasks)
+        - exam 1:     week 07 (theory exam + 4 programming tasks)
+        - homework 3: week 11 (2 programming tasks)
+        - homework 4: week 14 (2 programming tasks)
+        - exam 2:     week 15 (theory exam + 4 programming tasks)
 [ ] Sadly, this time is the only time appropriate for me.
 [ ] During the intermission create a Facebook chat (FP_CS_22-23)! Remind Simo if he forgets, please 😄!
+    Also keep in mind that if you want a fast/timely reply, you ought to send an email.
+    I do not log into FB often!!
 
 
+- !! bracket overflow 😄 !!
 - Racket is PREFIX, i.e. first write the procedure and then write its arguments
 - extension for Racket files: .rkt
 - Edit > Preferences > Editing > Racket > put ticks everywhere
@@ -20,6 +30,7 @@
     - the two windows are independent, so feel free to test code in the interpreter window even if the code in the text editor window has errors or is incomplete
 - IMPORTANT NOTE: DrRacket DOES NOT autosave.
 
+
 Comments
     Only for human-readable text.
 
@@ -30,9 +41,11 @@ Comments
     a multiline comment.
     |#
 
+
 The functions in Racket are (formally) called procedures
-    - What is the difference between a procedure and a method?
+    What is the difference between a procedure and a method?
         ???
+
 
 What is a predicate?
     ???
