@@ -142,9 +142,9 @@ Test cases:
     (equal? (is-even-if 15452) "Yes")
     (equal? (is-even-if 321) "No")
 
-    (equal? (is-even-guards? 2) "Yes")
-    (equal? (is-even-guards? 15452) "Yes")
-    (equal? (is-even-guards? 321) "No")
+    (equal? (is-even-guards 2) "Yes")
+    (equal? (is-even-guards 15452) "Yes")
+    (equal? (is-even-guards 321) "No")
 
 # For home
 

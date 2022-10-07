@@ -2,8 +2,9 @@
 # Week_01 - Recursion (part 1)
 ###################################################################################################
 
-[ ] Walk around the GitHub page.
-[ ] Yes, homework 3 is going to be during the Christmas holidays.
+[X] Walk around the GitHub page.
+    [X] What is that "For Home" section? (please remind Simo to explain it at the end of the second hour, in case he forgets!!)
+[X] Yes, homework 3 is going to be during the Christmas holidays.
     Here is a timeline THAT MIGHT CHANGE:
         - homework 1: week 03 (2 programming tasks)
         - homework 2: week 06 (2 programming tasks)
@@ -11,8 +12,8 @@
         - homework 3: week 11 (2 programming tasks)
         - homework 4: week 14 (2 programming tasks)
         - exam 2:     week 15 (theory exam + 4 programming tasks)
-[ ] Sadly, this time is the only time appropriate for me.
-[ ] During the intermission create a Facebook chat (FP_CS_22-23)! Remind Simo if he forgets, please 😄!
+[X] Sadly, this time is the only time appropriate for me.
+[X] During the intermission create a Facebook chat (FP_CS_22-23)! Remind Simo if he forgets, please 😄!
     Also keep in mind that if you want a fast/timely reply, you ought to send an email.
     I do not log into FB often!!
 
@@ -44,11 +45,11 @@ Comments
 
 The functions in Racket are (formally) called procedures
     What is the difference between a procedure and a method?
-        ???
+        *this <= method
 
 
 What is a predicate?
-    ???
+    Procedure which returns true of false.
 
 
 Types of Evaluation Processes
@@ -60,15 +61,15 @@ Types of Evaluation Processes
    Linearly Iterative
         1. The result is stored as a variable that is set by ANOTHER function.
         Often the variable is named "result" and the function - "helper".
-        2. The recursive call is not part of an expression.
+        2. The recur    sive call is not part of an expression.
         These processes are faster than the linearly recursive ones!
 
 
 What is a declaration and what is a definition?
-    int add(const int x, const int y)       <-- ???
-    {                                       <-- ???
-        return x + y;                       <-- ???
-    }                                       <-- ???
+    int add(const int x, const int y)       <-- declaration
+    {                                       <-- definition
+        return x + y;                       <-- definition
+    }                                       <-- definition
 
 
 Built-in data types
