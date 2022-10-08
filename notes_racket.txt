@@ -45,7 +45,7 @@ Comments
 
 The functions in Racket are (formally) called procedures
     What is the difference between a procedure and a method?
-        *this <= method
+        The method is part of a class and hence has access to the *this pointer.
 
 
 What is a predicate?
@@ -61,7 +61,7 @@ Types of Evaluation Processes
    Linearly Iterative
         1. The result is stored as a variable that is set by ANOTHER function.
         Often the variable is named "result" and the function - "helper".
-        2. The recur    sive call is not part of an expression.
+        2. The recursive call is not part of an expression.
         These processes are faster than the linearly recursive ones!
 
 
@@ -158,3 +158,31 @@ The hello world procedure:
 |                       |
 Do not forget the parenthesis (procedure <=> parenthesis) !
 
+
+
+###################################################################################################
+# Week_02 - Recursion (part 2)
+###################################################################################################
+
+For home:
+	WARNING:
+		Getting a “Yes” DOES NOT mean getting a bonus.
+
+Import a library:
+    #import ... (in C++) => (require ...) (in Racket)
+	(require math/number-theory) ; API: https://docs.racket-lang.org/math/number-theory.html
+	(require racket/trace) ; see what arguments a procedure gets when it is called
+
+Procedures:
+	(divides? d n): Whether y divides x with remainder=0.
+		(divides? 5 25) -> #t ; How would you implement it? Answer: ???
+		(divides? 5 19) -> #f
+		(divides? 10 66) -> #f
+		(divides? 10 100) -> #t
+	(prime? n): Whether n is a prime number.
+	(prime-divisors n)
+	(even? n): Whether n is an even number.
+	(odd? n): Whether n is an odd number.
+	(factorial n): Get the factorial of a number.
+	(trace <f-name>): See what calculations happen where. VERY USEFUL FOR DEBUGGING!
+        - [ ] Show why linearly iterative procedures are faster than recursive ones.
