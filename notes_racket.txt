@@ -109,17 +109,21 @@ Procedures
     remainder
         - returns the remainder of the division
         - (remainder 123 10) -> 3
-(define (f x)
-  (cond
-    [(= x 10) "x is 10"]
-    [(zero? (remainder x 2)) "x is not 10 but is even"]
-    [else "x is not 10 and is not even"]
-    )
-  )
+    cond
+        - The equivalent of the switch-case in C++.
+        - Used to define guards.
+        - Example:
+            (define (f x)
+            (cond
+                [(= x 10) "x is 10"]
+                [(zero? (remainder x 2)) "x is not 10 but is even"]
+                [else "x is not 10 and is not even"]
+                )
+            )
 
-(f 10) ; -> x is 10
-(f 5) ; -> x is not 10 and is not even
-(f 6) ; -> x is not 10 but is even
+            (f 10) ; -> x is 10
+            (f 5) ; -> x is not 10 and is not even
+            (f 6) ; -> x is not 10 but is even
     expt
         - the power operator
         - (expt 2 10) -> 1024
@@ -164,8 +168,16 @@ Do not forget the parenthesis (procedure <=> parenthesis) !
 # Week_02 - Recursion (part 2)
 ###################################################################################################
 
-For home:
-	WARNING:
+[X] Somebody who submits for home using the university email: please give a hand to Vasilii.
+[X] Students who don't have access to Moodle should write an email to me as soon as possible.
+[X] Let's try to answer all of the questions we see in emails. 
+[X] Exam1: 19.11.2022 (practice: 14 - 16:30, theory: 325, 16:30 - 18)
+[X] Exam2: 14.01.2023 (practice: 14 - 16:30, theory: 325, 16:30 - 18)
+[X] It appears that screenshots don't show on the mobile app. Probably a bug - let's hope it gets fixed soon.
+
+For home
+    Please non .rar! Linux does not love them 😅. Use .zip (preferred by Simo) or do not archive at all.
+	WARNING
 		Getting a “Yes” DOES NOT mean getting a bonus.
 
 Import a library:
@@ -174,8 +186,8 @@ Import a library:
 	(require racket/trace) ; see what arguments a procedure gets when it is called
 
 Procedures:
-	(divides? d n): Whether y divides x with remainder=0.
-		(divides? 5 25) -> #t ; How would you implement it? Answer: ???
+	(divides? d n): Whether d divides n with remainder=0.
+		(divides? 5 25) -> #t ; How would you implement it? Answer: (zero? (reminder 25 5))
 		(divides? 5 19) -> #f
 		(divides? 10 66) -> #f
 		(divides? 10 100) -> #t
@@ -185,4 +197,4 @@ Procedures:
 	(odd? n): Whether n is an odd number.
 	(factorial n): Get the factorial of a number.
 	(trace <f-name>): See what calculations happen where. VERY USEFUL FOR DEBUGGING!
-        - [ ] Show why linearly iterative procedures are faster than recursive ones.
+        - [X] Show why linearly iterative procedures are faster than recursive ones.
