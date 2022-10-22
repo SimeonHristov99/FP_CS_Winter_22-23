@@ -198,3 +198,64 @@ Procedures:
 	(factorial n): Get the factorial of a number.
 	(trace <f-name>): See what calculations happen where. VERY USEFUL FOR DEBUGGING!
         - [X] Show why linearly iterative procedures are faster than recursive ones.
+
+
+
+###################################################################################################
+# Week_04 - Lambda Expressions
+###################################################################################################
+
+General
+	procedures without a name (anonymous)
+		- called "arrow functions" in JS, TS, etc (Frontend Languages and Frameworks)
+		- in Python3: lambda x : x + 1
+		- in C++    : [](const int x) { return x + 1; } (if interested: https://www.youtube.com/watch?v=mWgmBBz0y8c)
+		- in Racket : (λ (x) (add1 x))
+
+	have four parts
+		- brackets
+		- the lambda symbol ; in DrRacket use Cntr + \ or lambda
+		- sequence of parameters (separated by SPACE)
+		- a procedure to be executed over those parameters
+	    	- (λ (<parameters>) (<procedure>))
+
+	a lambda that adds 5 to a number
+		???
+		- how would a test look like? ???
+
+	a lambda-predicate that checks whether a number is greater than 10
+		???
+		- how would a test look like? ???
+
+	a lambda which adds three numbers
+		???
+		- how would a test look like? ???
+
+	What is an unary procedure?
+		- ???
+		- ex. ???
+	
+    What is a binary procedure?
+		- ???
+		- ex. ???
+
+Function Composition
+	Composition of f and g over x: Apply f on the result of applying g over x.
+	We did it last time. Can you tell me which task it was?
+        Task: ???; Line: ???
+
+Partial Application
+	1. Take an n-argument procedure F (n > 1).
+	2. Apply it to m arguments (m < n).
+	3. Return a procedure that takes (n - m) arguments.
+	Done! You have just applied F partially to m arguments. The result is a procedure!!
+    Currying:
+        When you keep applying F only to m=1 arguments until all of them are supplied.
+
+Higher order procedure
+	A procedure that accepts at least one procedure as a parameter and/or returns a procedure.
+		Note: Procedures can be passed to other procedures just like a normal type (numbers, strings, vectors, arrays, etc.). That is why they are called "first class citizens" in JS.
+
+What will the following produce?
+	- ((λ (x y z) (string-append x y z)) "This" " is " "Racket!")
+	- ((λ (x y z) (x y z)) (λ (x y) (+ x y)) 5 6)
