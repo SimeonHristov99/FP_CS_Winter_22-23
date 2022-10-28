@@ -220,29 +220,29 @@ General
 	    	- (λ (<parameters>) (<procedure>))
 
 	a lambda that adds 5 to a number
-		???
-		- how would a test look like? ???
+		(lambda (x) (+ 5 x))
+		- how would a test look like? ((lambda (x) (+ 5 x)) 6)
 
 	a lambda-predicate that checks whether a number is greater than 10
-		???
-		- how would a test look like? ???
+		(lambda (x) (> x 10))
+		- how would a test look like? ((lambda (x) (> x 10)) 6)
 
 	a lambda which adds three numbers
-		???
-		- how would a test look like? ???
+		(lambda (x y z) (+ x y z))
+		- how would a test look like? ((lambda (x y z) (+ x y z)) 5 6 7)
 
 	What is an unary procedure?
-		- ???
-		- ex. ???
+		- A procedure which takes one argument.
+		- ex. (add1, sub1)
 	
     What is a binary procedure?
-		- ???
-		- ex. ???
+		- A procedure which takes two arguments.
+		- ex. (divides?, expt)
 
 Function Composition
 	Composition of f and g over x: Apply f on the result of applying g over x.
 	We did it last time. Can you tell me which task it was?
-        Task: ???; Line: ???
+        Task: 6; Line: 13
 
 Partial Application
 	1. Take an n-argument procedure F (n > 1).
