@@ -6,7 +6,7 @@ Demonstrate the difference between `applicative` and `normal` order evaluation.
 
 Define a higher order procedure that:
 
-- simulates the `identity` procedure. Your procedure should be called `my-identity`;
+- is called `my-identity` and simulates the `identity` procedure;
 - accepts a procedure and returns a lambda that accepts an argument and applies that procedure to it;
 - accepts a predicate and returns a lambda that accepts an argument and applies the negated predicate to it;
 - accepts two procedures and returns their composition over an argument of a lambda procedure;
