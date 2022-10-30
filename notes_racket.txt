@@ -259,3 +259,142 @@ Higher order procedure
 What will the following produce?
 	- ((λ (x y z) (string-append x y z)) "This" " is " "Racket!")
 	- ((λ (x y z) (x y z)) (λ (x y) (+ x y)) 5 6)
+
+
+
+###################################################################################################
+# Week_05 - Lists
+###################################################################################################
+	
+Strings
+	API: https://docs.racket-lang.org/reference/strings.html#%28def._%28%28quote._~23~25kernel%29._string%29%29
+	string-length, string-append, string<?, string=?, string>?, substring str start [end], string-upcase
+
+General
+	API: https://docs.racket-lang.org/reference/pairs.html
+
+	the list is a linked list
+
+	naming convention:
+		Put a suffix 's' at the end of identifiers.
+		For example, if we wanted to save '(1 2) in a parameter,
+			we would name the it xs
+			and read it 'xes'.
+		Read the following: ys.
+
+Built-in procedures
+	constructing a list
+		- (list 1 2 3 4 5 6)
+		- '(1 2 3 4 5 6)
+		- (cons 1 '()) ; short for construct
+		    - (cons 2 (cons 1 '()))
+		    - '(1 . (2 . (3 . ())))
+		    - if the second parameter is not a list, the result is a pair
+                - '(1 . 2)
+                - (list? '(1 . 2)) ; #f
+                - (pair? '(1 . 2)) ; #t
+
+	check whether a list is empty
+		(null? xs)
+		(empty? xs)
+		(equal? xs '())
+		(cons? xs)
+
+	getting the ith element of a list (analog with a train)
+		!!! Must have a check to ensure validity of index !!!
+
+		first element (the locomotive ???)
+		    (frist xs) ; first '(1 2 3) => 1
+		    (car xs) ; car '(1 2 3) => 1
+		  
+		last element
+		    (last xs) ; last '(1 2 3) => 3
+
+		second element
+		    (second xs) ; second '(1 2 3) => 2
+
+		third, fourth .. tenth
+
+		the ith element
+		    (list-ref xs i) ; list-ref '(1 2 3 4) 2 => 3
+
+		get all the wagons of the train
+		    (cdr xs) ; cdr '(1 2 3 4 5 6) => '(2 3 4 5 6)
+		    pronounced “could-er"
+
+		CCCC: Car and Cdr Complete Chaos
+		    '(1 (2 3 45))
+			get 1        : ???
+			get '(2 3 45): ???
+			get 2        : ???
+
+	(length xs) ; find the length (i.e. the number of elements)
+		length '("we" 2 "can" 5.26 "have multiple types" #f) => 6
+		    Advice: use lists as if they were homogeneous
+			        else you won't be able to use some procedures: sort, map, filter, etc.
+
+	(member x xs) ; is an element in a list
+	    returns #f => it is not in xs
+	    returns a list (the element + everything until the end) => it is in xs
+		usually used with (list? )
+	    (member 1 '(16 2 3 4)) -> #f
+	    (member 1 '(14 2 1 4)) -> '(1 4)
+		(list? (member 1 '(14 2 1 4))) -> #t
+	    (member 1 '(1 2 3 4)) -> '(1 2 3 4)
+
+	(reverse xs) ; reverse the contents of a list
+		reverse '(1 2 3) => '(3 2 1)
+
+	(append xs ys ...) ; combine the elements of n lists
+		(append '(1 2 3) '(4 5 6) '(7 8 9) '(10 11 12) '(13)) => '(1 2 3 4 5 6 7 8 9 10 11 12 13)
+
+	(sort xs p?) ; sort the elements of a list
+		p? is a binary predicate
+		(sort '(1 3 2) >) => '(3 2 1)
+
+	(flatten xss) ; reduces any sublists to a single list
+		(flatten '(1 2 (3 4 5) (6 (7 (8))))) -> '(1 2 3 4 5 6 7 8)
+		
+	(remove-duplicates xs) ; does what its name suggests
+		(remove-duplicates '(1 2 3 1 2 3 4 1 2 3 41 2 3 56)) -> '(1 2 3 4 41 56)
+		
+	(remq el xs) ; remove the first occurrence of el in xs by going from left to right
+		(remq 1 '(2 1 1)) -> '(2 1)
+
+	(remq* ys xs) ; removes all elements in ys from xs
+		(remq* '(1) '(1 2 3 1))     -> '(2 3)
+		(remq* '(1 2 3) '(1 2 3 1)) -> '()
+
+	(map f xs) ; apply f to every element of xs 
+		f must be a unary procedure
+		(map (λ (x) (* x 2)) '(1 2 3 4 5)) -> '(2 4 6 8 10)
+
+	(apply f xs) ; apply f to all element of xs
+		f must take (length xs) arguments
+		(apply + '(1 2 3 4 5)) -> 15
+
+	(filter p? xs) ; return the elements that satisfy p?
+		p? has to be unary
+		(filter even? '(1 2 3 4 5)) -> '(2 4)
+		(filter (λ (x) (divides? 3 x)) '(0 1 2 3 4 5 6)) -> '(0 3 6)
+		(filter (curry divides? 3) '(0 1 2 3 4 5 6)) -> '(0 3 6)
+
+	(range x y [step]) ; constructs a list having the elements in the interval [x, (sub1 y)]
+		(range 5 10) -> '(5 6 7 8 9)
+		(range 5 10 2) -> '(5 7 9)
+
+	foldl, foldr ; reduce a list to a single value
+		(fold(r|l) <binary-proc> <init-val> <xs>)
+		l => Start from the LEFT side of xs.
+		r => Start from the RIGHT side of xs.
+		<binary-proc>:
+			first parameter is an element from (right side | left side) of xs
+			second parameter is called the result / the accumulator / the initial value.
+		Examples
+            (foldr (λ (x acc) (and x acc)) #f '(#t #t #t #t #t)) -> #f
+		    (foldl (λ (x acc) (+ x acc)) 0 '(1 2 3 4 5))         -> 15
+		Returns the product of all numbers in the list: '(1 2 3 4 5).
+			???
+		Find the sum and product of those numbers using another HOF
+            product: ???
+            sum: ???
