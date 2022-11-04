@@ -304,7 +304,7 @@ Built-in procedures
 		!!! Must have a check to ensure validity of index !!!
 
 		first element (the locomotive ???)
-		    (frist xs) ; first '(1 2 3) => 1
+		    (first xs) ; first '(1 2 3) => 1
 		    (car xs) ; car '(1 2 3) => 1
 		  
 		last element
@@ -324,9 +324,9 @@ Built-in procedures
 
 		CCCC: Car and Cdr Complete Chaos
 		    '(1 (2 3 45))
-			get 1        : ???
-			get '(2 3 45): ???
-			get 2        : ???
+			get 1        : (car '(1 (2 3 45)))
+			get '(2 3 45): (cadr '(1 (2 3 45)))
+			get 2        : (caadr '(1 (2 3 45)))
 
 	(length xs) ; find the length (i.e. the number of elements)
 		length '("we" 2 "can" 5.26 "have multiple types" #f) => 6
@@ -394,7 +394,7 @@ Built-in procedures
             (foldr (λ (x acc) (and x acc)) #f '(#t #t #t #t #t)) -> #f
 		    (foldl (λ (x acc) (+ x acc)) 0 '(1 2 3 4 5))         -> 15
 		Returns the product of all numbers in the list: '(1 2 3 4 5).
-			???
+			(foldl (λ (x acc) (* x acc)) 1 '(1 2 3 4 5))
 		Find the sum and product of those numbers using another HOF
-            product: ???
-            sum: ???
+            product: (apply * '(1 2 3 4 5))
+            sum: (apply + '(1 2 3 4 5))
