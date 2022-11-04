@@ -162,7 +162,7 @@ Test cases:
 
 # Task 4
 
-Define procedures that accept a list of digits and return the number that is build by traversing the list from right to left. Create two versions - one that utilizes **folding**, and another that does **linear recursion**.
+Define procedures that accept a list of digits and return the number that is build by traversing the list from right to left. Create two versions - one that utilizes **folding**, and another that does **recursion**.
 
 Test cases:
 
@@ -171,9 +171,9 @@ Test cases:
 (= (rev-fold '(1 2 3)) 321)
 (= (rev-fold '(1 2 3 4 5 6 7 8 9)) 987654321)
 
-; using a linearly recursive procedure
-(= (rev-lin-rec '(1 2 3)) 321)
-(= (rev-lin-rec '(1 2 3 4 5 6 7 8 9)) 987654321)
+; using a linearly iterative procedure
+(= (rev-lin-iter '(1 2 3)) 321)
+(= (rev-lin-iter '(1 2 3 4 5 6 7 8 9)) 987654321)
 ```
 
 # Task 5
