@@ -398,3 +398,73 @@ Built-in procedures
 		Find the sum and product of those numbers using another HOF
             product: (apply * '(1 2 3 4 5))
             sum: (apply + '(1 2 3 4 5))
+
+
+
+###################################################################################################
+# Week_06 - Pairs. Association Lists
+###################################################################################################
+
+Pairs and association lists:
+	Pairs
+		analogy with std::pair<T1, T2>
+		'(<value1> . <value2>)
+
+		How to construct?
+			(cons 1 2)
+			(cons 1 2 3) ; error, because pairs contain only two elements
+			(cons "banana" "split") ; -> '("banana" . "split")
+			Note: '(1 . 2) is a pair, but '(1 . (2)) is a list
+
+		car = first element; cdr = second element
+
+		can be used to form a list of pairs
+			(list '(1 . 2) '(1 . 5) '(5 . 1))
+
+	Associative list (when life gives you lists and pairs, you make an associative list)
+		the dict() in Python
+		hash maps
+			used for making key-value pairs
+			a list of pairs where one of the values (typically the first) is unique (has the role of a key)
+		(list '(1 . "One") '(2 . "Two") '(3 . "Three"))
+		(assoc el xs) ; returns the first PAIR (from left to right) that has el as key
+					OR #f if there is no such element
+			(assoc 1 '((1 . 2) (2 . 3) (1 . 2))) ; -> '(1 . 2)
+
+	remove and remove*
+		remq and remq* use eq? to compare ("shallow check")
+			good enough to remove elements from lists with a single dimension.
+		remove and remove* use equal? to compare elements ("deep check")
+			use when remq and remq* don't work
+		Examples
+			(remq '(1 . 2) '((1 . 2) (4 . 5)))                     ; -> '((1 . 2) (4 . 5))
+			(remove '(1 . 2) '((1 . 2) (4 . 5)))                   ; -> '((4 . 5))
+			(remq* (list (cons 1 2)) '((1 . 2) (4 . 5) (1 . 2)))   ; -> '((1 . 2) (4 . 5) (1 . 2))
+			(remove* (list (cons 1 2)) '((1 . 2) (4 . 5) (1 . 2))) ; -> '((4 . 5))
+
+
+Higher order functions for lists:
+	(ormap p? xs) ; returns true if there is at least one element from xs that satisfies p
+		(ormap even? '(1 2 3 4 5)) ; -> #t
+
+	(andmap p? xs) ; returns true if all elements from xs satisfy p
+		(andmap even? '(1 2 3 4 5))
+			What predicate would make it return the opposite result?
+				???
+
+	(take xs n) ; return the first n elements in xs
+		(take '(1 2 3 4) 0) ; -> '()
+		(take '(1 2 3 4) 2) ; -> '(1 2)
+		(take '(1 2 3 4) 5) ; -> error
+
+	(takef xs pred) ; return a list whose elements are taken successively from xs as long as they satisfy pred. The returned list includes up to, but not including, the first element in xs for which pred returns #f.
+	(takef '(2 4 5 8) even?) ; -> '(2 4)
+	(takef '(2 4 6 8) odd?)  ; -> '()
+
+	(drop xs n) ; remove the first n elements in xs
+		(drop '(1 2 3 4) 0) -> '(1 2 3 4)
+		(drop '(1 2 3 4) 2) -> '(3 4)'
+		(drop '(1 2 3 4) 5) -> error
+
+	(dropf xs pred) ; remove elements in xs as long as they satisfy pred
+		(dropf '(2 2 4 8 56) even?) -> '()
