@@ -405,6 +405,12 @@ Built-in procedures
 # Week_06 - Pairs. Association Lists
 ###################################################################################################
 
+Structure for exam1
+	Task1: Recursion.
+	Task2: Lists.
+	Task3: Pairs.
+	Task4: Lists.
+
 Pairs and association lists:
 	Pairs
 		analogy with std::pair<T1, T2>
