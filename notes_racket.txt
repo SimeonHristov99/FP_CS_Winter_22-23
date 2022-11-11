@@ -405,13 +405,15 @@ Built-in procedures
 # Week_06 - Pairs. Association Lists
 ###################################################################################################
 
+[X] How is the poll going?
+
 Structure for exam1
 	Task1: Recursion.
 	Task2: Lists.
 	Task3: Pairs.
 	Task4: Lists.
 
-Pairs and association lists:
+Pairs and association lists
 	Pairs
 		analogy with std::pair<T1, T2>
 		'(<value1> . <value2>)
@@ -456,7 +458,7 @@ Higher order functions for lists:
 	(andmap p? xs) ; returns true if all elements from xs satisfy p
 		(andmap even? '(1 2 3 4 5))
 			What predicate would make it return the opposite result?
-				???
+				(andmap (λ (x) (or (even? x) (odd? x))) '(1 2 3 4 5))
 
 	(take xs n) ; return the first n elements in xs
 		(take '(1 2 3 4) 0) ; -> '()
