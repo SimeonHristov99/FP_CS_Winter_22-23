@@ -5,7 +5,7 @@
 ; all points are part of the graph of the function.
 
 (define (graph-contains-points ps f)
-
+  (andmap (λ (p) (= (f (car p)) (cdr p))) ps)
   )
 
 (equal? (graph-contains-points '((1 . 2) (2 . 3) (3 . 4)) add1) #t)

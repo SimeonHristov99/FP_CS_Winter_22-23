@@ -6,7 +6,12 @@
 ; row in modified-xss contains only zeros.
 
 (define (zero-rows xss)
-
+  (map (λ (xs)
+         (if (list? (member 0 xs))
+             (make-list (length xs) 0) ;(map (λ (x) 0) xs)
+             xs
+             )
+         ) xss)
   )
 
 (equal? (zero-rows '((1 2 0)

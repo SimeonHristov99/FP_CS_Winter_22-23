@@ -5,11 +5,25 @@
 ; and checks whether xs is sorted according to a p.
 
 (define (ordered xs)
-
+  (λ (p?)
+    (cond
+      [(< (length xs) 2) #t]
+      [(not (p? (car xs) (cadr xs))) #f]
+      [else ((ordered (cdr xs)) p?)]
+      )
+    )
   )
 
 (define (ordered-no-expl-booleans xs)
-
+  (λ (p?)
+    (or
+     (< (length xs) 2)
+     (and
+      (p? (car xs) (cadr xs))
+      ((ordered-no-expl-booleans (cdr xs)) p?)
+      )
+   )
+    )
   )
 
 ; with freedom to solve however you like it
