@@ -1,0 +1,239 @@
+########################################################################################################################
+# Week_08 - Hello, Haskell 🤪 !
+########################################################################################################################
+
+VEEERY whitespace sensitive, i.e. tabs, spaces, new lines matter (a lot)
+comments:
+   use -- for single line comments
+   use {--} for multiline comments
+   only for human-readable text!
+everything is a function here!
+   read the following: a = 5 (a :: Int)
+   a++, ++a <- invalid 🛑. use (a + 1)
+use camel case to name identifiers, i.e. myFunction
+#include ... (C++) -> import ... (Haskell)
+when passing negative numbers as parameters surround them in brackets
+   example: helper (-1)
+
+
+################################################################################
+# Types
+################################################################################
+  ❗❗❗ Important ❗❗❗
+    1. All types start with a capital letter!
+    2. All types must be known at compile time! (strongly typed language; no dynamic casting (polymorphism))
+    3. If f returns Int, then f cannot return Double! (statically typed language)
+
+    Bool     -> True False
+
+    Int      -> whole numbers;          uses 32 bits                (ex. 1, 10, 153)
+    Integer  -> whole numbers;          unbounded                   (ex. 123456789123456789123456798)
+
+    Float    -> floating-point numbers; equivalent to float in C++  (ex. 1.52)
+    Double   -> floating-point numbers; equivalent to double in C++ (ex. 1.5252525252525252525252525252)
+    Rational -> floating-point numbers; unbounded
+
+    Char     -> equivalent to char                        in C++ (ex. 'a', '1', 'C', '\n')
+    String   -> equivalent to std::string and const char* in C++ (ex. "Haskell")
+
+
+Built-in Functions
+    boolean logical operators: && || not
+
+    arithmetic
+        +, -, * (Only for variables of the same type, i.e. n * m will give an error if n is Int and m - Double)
+
+    division
+        for whole numbers
+            quotient: div (ex. div 10 5 == 2; div 123 10 == 12)
+            remainder: mod (ex. mod 10 5 == 0; mod 123 10 == 3) (equivalent to % in C++)
+        real numbers
+            use only "/" (equivalent to "/" in C++, but here it cannot be used for whole numbers)
+
+    power
+        use n ^ m  when m is a natural number (i.e. m > 0) (ex. 2 ^ 3 == 8)
+        use n ** m when m is a floating-point number (ex. 2 ** 0.5 == 1.4142135623730951)
+
+    other: min, max, odd, even, gcd, abs, sqrt (sqrt 2 == 1.4142135623730951; sqrt :: Double -> Double)
+
+    ❗❗❗ Int => Double: fromIntegral           (ex. if a is 5, then (fromIntegral a) is 5.0)  ❗❗❗
+    ❗❗❗ Double => Int: ceiling, floor, round, truncate  (ex. round 5.45 == 5)                ❗❗❗
+    ❗❗❗ != (C++) => /= (Haskell)              (ex. 5 /= 5 is False; True /= False is True)   ❗❗❗
+
+
+ The "Hello world" function:
+
+    ($) - read this function as "after"; accepts a function as a left parameter and an expression as a right side.
+    First it evaluates the expression.
+    Then it passes the result to the function.
+
+        print             $       "Hello world"
+          ^               ^              ^
+         / \             / \            / \
+        /   \           /   \          /   \
+          |               |              |
+          |               |              |
+          |               |              |
+          |               |              |
+       identifier      identifier       a string
+       of a function   of a function
+
+
+Conditions:
+   if ... then ... else ...
+   guards are denoted with the pipe symbol (|). The equivalent of a switch case in C++ and cond in Racket.
+
+
+################################################################################
+# Closure
+################################################################################
+
+Everything in a where clause.
+
+
+################################################################################
+# Type Inference - The Declaration Can Be Skipped
+################################################################################
+
+ The The Glasgow Haskell Compiler (GHC) can "guess" the types of every function
+    this ability is called type inference
+
+ fname :: [type1 -> type2 -> ... ->]returnType     <= This is not needed
+
+
+################################################################################
+# Lists. General
+################################################################################
+
+ std::forward_list<a>
+    all values MUST be of ONE type
+ [] is the empty list
+ naming conventions
+    helper 5 6          <= helper x y
+    BUT
+    helper [1, 2, 3] [] <= helper xs ys
+
+
+################################################################################
+# Constructing Lists
+################################################################################
+ - [1, 2, 3, 4, 5, 6]
+
+ - by using cons (":") 
+    - 1 : []  => [1]
+    - 1 : [2] => [1, 2]
+    - 1 : [2, 3] => [1, 2, 3]
+
+
+ - check whether a list is empty (i.e. doesn't have any contents)
+    - using pattern matching (helper [] = error "Empty list")
+    - null xs
+    - xs == []
+
+
+ - getting the ith element of a list
+    - car
+        - (x:xs) => x is the first element
+        - head [1, 2, 3] => 1
+
+    - cdr
+        - (x:xs) => xs is the tail
+        - tail [1, 2, 3] => [2, 3]
+        - tail [1 .. 5] = [2, 3, 4, 5]
+
+    - the ith element
+        - xs!!5 => The element at INDEX 5 (ex. [1, 2, 3, 4, 5, 6]!!5 == 6)
+        - [1 .. 5] !! 3 = 4
+
+    - last element
+        - last [1, 2, 3, 4] => 4
+
+    - all but the last element:
+        - init [1 .. 5] = [1, 2, 3, 4]
+
+
+ - is a given element in a list?
+    - elem x xs
+        - elem 1 [16, 2, 3, 4] => False
+        - elem 1 [14, 2, 1, 4] => True
+        - elem 1 [1, 2, 3, 4] => True
+
+
+ - combine the elements of n lists
+    - [1, 2, 3] ++ [4, 5, 6] => [1, 2, 3, 4, 5, 6]
+    - concat [1, 2, 3] [4, 5, 6] => [1, 2, 3, 4, 5, 6]
+
+ - length [1, 2, 3] => 3
+ - reverse [1, 2, 3] => [3, 2, 1]
+ - sum [1 .. 5] = 15 (The sum of all elements)
+ - product [1 .. 5] = 120 (The product of all elements)
+ - minimum [2, 5, 6, 2, 1, 2, 6, 0, 45] => 0
+ - maximum [2, 5, 6, 2, 1, 2, 6, 0, 45] => 45
+ - take 5 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] => [1, 2, 3, 4, 5]
+ - drop 5 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] => [6, 7, 8, 9, 10]
+
+
+################################################################################
+# String - a list of characters
+################################################################################
+
+ - type String = [Char]
+ - Convert a number to a string: show 15 == "15" == ['1', '5']
+ - Convert a string to a number: read "15" == 15
+ - Convert a character to a digit: digitToInt '5' -> 5 (part of Data.Char)
+
+
+################################################################################
+# Even More Functions (ALL ARE PART OF ❗ DATA.LIST ❗)
+################################################################################
+
+ - Remove duplicates: nub [1, 1, 2, 3, 1, 5, 5, 1, 2, 5] => [1,2,3,5]
+
+ - Sort the elements of a list in ascending order: sort [5, 4 .. 1] => [1, 2, 3, 4, 5]
+
+ - The group function takes a list and returns a list of lists such that the concatenation of the result is equal to the argument. Moreover, each sublist in the result contains only equal elements. For ex
+      group "Mississippi" => ["M","i","ss","i","ss","i","pp","i"] -- [String] [[Char]]
+
+ - replicate :: Int -> a -> [a]
+      replicate 5 10 -> [10,10,10,10,10]
+
+
+################################################################################
+# List Comprehension - Another Way Of Constructing a List
+################################################################################
+
+ - [1 .. 6]                                    => [1, 2, 3, 4, 5, 6]
+ - [1, 3 .. 6]                                 => [1, 3, 5]
+ - [ x + 10 | x <- [1 .. 6]]                   => [11, 12, 13 .. 16]
+ - [ x | x <- [1 .. 6], even x]                => [2, 4, 6]
+ - [ x | x <- [1 .. 6], mod x 3 == 0 && x > 3] => [6]
+
+
+################################################################################
+# Lambda Expressions
+################################################################################
+
+- have three parts: brackets, "the slash" \, "the arrow" ->
+    - (lambda (x y z) (+ x y z)) => (\ x y z -> x + y + z)
+    - (\ <parameters> -> <function application>)
+
+- a lambda that adds 5 to a number:
+print $ ??? 10 == 15
+
+- a lambda-predicate that checks whether a number is greater than 10:
+print $ ??? 10 == False
+
+- a lambda which adds three numbers:
+print $ ??? 10 20 30 == 60
+
+
+################################################################################
+# Higher order functions
+################################################################################
+
+    map    (\ x -> x + 10)         [1 .. 6]     => [11, 12, 13, 14, 15, 16] (eqiv. map (+10) [1 .. 6])
+    filter (\ x -> even x)         [1 .. 6]     => [2, 4, 6] (eqiv. filter even [1 .. 6])
+    all    (\ x -> odd x)          [1 .. 6]     => False (eqiv. all odd [1 .. 6])
+    all    (\ x -> even x)         [2, 4, 6]    => True
+    any    (\ x -> odd x)          [2, 4, 6]    => False
+    any    (\ x -> mod x 10 == 0)  [20, 44, 61] => True
