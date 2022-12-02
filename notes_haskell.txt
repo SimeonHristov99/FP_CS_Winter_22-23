@@ -218,13 +218,13 @@ Everything in a where clause.
     - (\ <parameters> -> <function application>)
 
 - a lambda that adds 5 to a number:
-print $ ??? 10 == 15
+print $ (\ x -> x + 5) 10 == 15
 
 - a lambda-predicate that checks whether a number is greater than 10:
-print $ ??? 10 == False
+print $ (\ x -> x > 10) 10 == False
 
 - a lambda which adds three numbers:
-print $ ??? 10 20 30 == 60
+print $ (\ x y z -> sum [x, y, z]) 10 20 30 == 60
 
 
 ################################################################################
@@ -237,3 +237,72 @@ print $ ??? 10 20 30 == 60
     all    (\ x -> even x)         [2, 4, 6]    => True
     any    (\ x -> odd x)          [2, 4, 6]    => False
     any    (\ x -> mod x 10 == 0)  [20, 44, 61] => True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################
+# Tuples (Vectors) (Ordered pairs)
+################################################################################
+
+- data structures whose size has to be explicitly stated (analogy with array in C++)
+- can hold multiple types (ex. x :: (Int, String, [Double]) is a vector with 3 dimensions)
+- fst (5, 6) => 5
+- snd (5, 6) => 6
+
+Examples:
+a vector with two coordinates representing a point in 2D space:
+type Point2D = (Int, Int)
+-- typedef std::pair<int, int> Point2D;
+
+Now every function that accepts a Point2D will look like this:
+
+helper :: Point2D -> Int -- instead of (Int, Int) -> Int
+helper (x, y) = x + y -- this function sums up the coordinates. Notice the pattern matching!
+-- helper x = fst x + snd x
+
+Notice:
+type String = [Char]
+
+
+################################################################################
+# Typeclasses
+################################################################################
+
+We can say that a function should accept numbers in general, not only Int or Double.
+
+Example:
+
+old:
+helper :: Int -> Int
+
+new:
+helper :: (Num a, Num b) => a -> b
+
+Typeclasses you must know:
+    - if only numbers then Num
+    - if ==, /= then Eq
+    - if <, <=, >=, > then Ord
+    - if only Float and Double then Fractional
+    - if only Int and Integer then Integral
+    - if making an algebraic type that has to be printed then Show
+
+In most cases the compiler will help us. Will demonstrate how this works today!

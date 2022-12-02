@@ -37,7 +37,7 @@ print $ divWhole 154 17 == 9.058823529411764
 print $ removeLastDigit 154 == 15    
 
 print $ divReal 154.451 10.01 == 15.42967032967033
-print $ quotientReal 154.21 17.17 == 9
+print $ quotientReal 154.21 17.17 == 8
 
 print $ avgWhole 5 1542 == 773.5
 
@@ -80,11 +80,11 @@ Define a recursive and an iterative function for calculating the factorial of a 
 Test cases:
 
 ```haskell
-print $ factXs 11 == 39916800
 print $ factRec 11 == 39916800
 --print $ factRec (-11) -- error: x was negative
 print $ factIter 11 == 39916800
 --print $ factIter (-11) -- error: x was negative
+print $ factXs 11 == 39916800
 ```
 
 # Task 4
