@@ -361,7 +361,7 @@ Built-in procedures
 	(remq el xs) ; remove the first occurrence of el in xs by going from left to right
 		(remq 1 '(2 1 1)) -> '(2 1)
 
-	(remq* ys xs) ; removes all elements in ys from xs
+	(remq* ys xs) ; removes all elements in xs from ys
 		(remq* '(1) '(1 2 3 1))     -> '(2 3)
 		(remq* '(1 2 3) '(1 2 3 1)) -> '()
 
