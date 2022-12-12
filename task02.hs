@@ -7,7 +7,7 @@ main = do
     print $ isTriangular [[0, 2, 3], [0, 0, 6], [1, 0, 0]] == False
     print $ isTriangular [[1, 2, 3], [1, 5, 6], [0, 0, 9]] == False
     print $ isTriangular [[1, 2, 3, 4], [0, 5, 6, 7], [0, 0, 8, 9], [0, 0, 0, 9]] == True
-    print $ isTriangular [[]] -- == True
+    print $ isTriangular [[]] == True
 
 isTriangular :: (Num a, Eq a) => [[a]] -> Bool
 isTriangular [] = True
