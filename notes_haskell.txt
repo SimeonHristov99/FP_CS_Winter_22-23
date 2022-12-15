@@ -286,3 +286,46 @@ Typeclasses you must know:
     - if making an algebraic type that has to be printed then Show
 
 In most cases the compiler will help us. Will demonstrate how this works today!
+
+
+################################################################################
+# Algebraic Types. Nonlinear Data Structures
+################################################################################
+
+Algebraic Data Types:
+
+the analog of class and struct in C++
+   can also be used as enumerations
+three parts: name, types (optional), constructors
+the name of the constructors may not match the name of the data type
+
+Syntax:
+
+data <name> [<types>] = <constructors>
+
+-- enumeration
+data Weather = Hot | Cold
+
+-- new type called 'Shape'
+-- it can be used to create figures with different parameters
+-- in this case: radius for a circle and length of sides for a triangle
+data Shape a = Circle a | Triangle a a a
+
+Note: In order to have the ability to print a shape, we must tell Haskell to redefine the output operator.
+This happens like this:
+
+data Shape a = Circle a | Triangle a a a
+ deriving (Show)
+
+
+################################################################################
+# Reading from files
+################################################################################
+
+Reading from files, happens with the readFile function. It returns the contents of a text file as a String.
+Two main points:
+    - make sure that you are starting Haskell directly from the directly which holds the file and the Haskell script;
+    - use readFile in the main function with the following syntax:
+    main = do
+        contents <- readFile "test.txt"
+        print $ contents
